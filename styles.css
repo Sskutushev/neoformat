@@ -1,0 +1,533 @@
+:root {
+  --bg-main: #e0e5ec;
+  --shadow-light: #ffffff;
+  --shadow-dark: #a3b1c6;
+  --accent: #ff6b6b;
+  --accent-2: #4ecdc4;
+  --text: #2d3436;
+  --text-light: #636e72;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Главный контейнер */
+.container {
+  background: var(--bg-main);
+  border-radius: 30px;
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 
+    20px 20px 60px var(--shadow-dark),
+    -20px -20px 60px var(--shadow-light);
+}
+
+/* Переключатель вкладок */
+.tabs {
+  display: flex;
+  position: relative;
+  margin-bottom: 40px;
+  background: var(--bg-main);
+  border-radius: 50px;
+  padding: 6px;
+  box-shadow: 
+    inset 8px 8px 16px var(--shadow-dark),
+    inset -8px -8px 16px var(--shadow-light);
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.tab.active {
+  color: white;
+}
+
+.tab-indicator {
+  position: absolute;
+  width: calc(50% - 6px);
+  height: calc(100% - 12px);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 50px;
+  top: 6px;
+  left: 6px;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 
+    4px 4px 10px rgba(0,0,0,0.1);
+}
+
+.tab-indicator.move-right {
+  transform: translateX(calc(100% + 6px));
+}
+
+/* Контейнеры форм */
+.form-container {
+  display: none;
+  animation: fadeIn 0.5s;
+}
+
+.form-container.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  color: var(--text);
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* Группы инпутов */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-main);
+  border-radius: 15px;
+  padding: 14px 18px;
+  box-shadow: 
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light);
+  transition: all 0.3s;
+}
+
+.input-wrapper:focus-within {
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light),
+    0 0 0 2px var(--accent-2);
+}
+
+.input-wrapper i {
+  color: var(--text-light);
+  margin-right: 12px;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.input-wrapper:focus-within i {
+  color: var(--accent);
+}
+
+.input-wrapper input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-wrapper input::placeholder {
+  color: var(--text-light);
+}
+
+/* Кнопка показа пароля */
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-light);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.toggle-password:hover {
+  color: var(--accent);
+}
+
+/* Индикатор силы пароля */
+.password-strength {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-main);
+  border-radius: 2px;
+  box-shadow: 
+    inset 2px 2px 4px var(--shadow-dark),
+    inset -2px -2px 4px var(--shadow-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.strength-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.strength-bar.weak::after {
+  width: 33%;
+  background: #ff6b6b;
+}
+
+.strength-bar.medium::after {
+  width: 66%;
+  background: #feca57;
+}
+
+.strength-bar.strong::after {
+  width: 100%;
+  background: #48dbfb;
+}
+
+.strength-text {
+  font-size: 11px;
+  color: var(--text-light);
+  min-width: 60px;
+}
+
+/* Сообщения об ошибках */
+.error-message {
+  display: none;
+  color: var(--accent);
+  font-size: 12px;
+  margin-top: 6px;
+  padding-left: 4px;
+}
+
+.input-group.error .error-message {
+  display: block;
+  animation: shake 0.4s;
+}
+
+.input-group.error .input-wrapper {
+  box-shadow: 
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light),
+    0 0 0 2px var(--accent);
+}
+
+.input-group.success .input-wrapper {
+  box-shadow: 
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light),
+    0 0 0 2px #48dbfb;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* Опции формы (запомнить/забыли) */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* Кастомный чекбокс */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.checkbox-wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  background: var(--bg-main);
+  border-radius: 6px;
+  margin-right: 10px;
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.checkbox-wrapper input:checked ~ .checkmark {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 
+    4px 4px 8px rgba(0,0,0,0.1),
+    -2px -2px 6px rgba(255,255,255,0.5);
+}
+
+.checkbox-wrapper input:checked ~ .checkmark::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: checkmark 0.3s;
+}
+
+@keyframes checkmark {
+  0% { transform: translate(-50%, -50%) scale(0); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.label-text {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.label-text a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.label-text a:hover {
+  color: var(--accent-2);
+}
+
+/* Ссылка забыли пароль */
+.forgot-link {
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.forgot-link:hover {
+  color: var(--accent-2);
+  text-decoration: underline;
+}
+
+/* Соглашения (для регистрации) */
+.agreements {
+  margin-bottom: 25px;
+}
+
+.agreements .checkbox-wrapper {
+  margin-bottom: 12px;
+}
+
+.agreements .checkbox-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+/* Кнопка отправки */
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    8px 8px 16px var(--shadow-dark),
+    -8px -8px 16px var(--shadow-light);
+  transition: all 0.3s;
+  margin-bottom: 20px;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    10px 10px 20px var(--shadow-dark),
+    -10px -10px 20px var(--shadow-light);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+  box-shadow: 
+    inset 6px 6px 12px rgba(0,0,0,0.1),
+    inset -6px -6px 12px rgba(255,255,255,0.5);
+}
+
+.btn-submit.loading {
+  pointer-events: none;
+}
+
+.btn-submit.loading .btn-text {
+  opacity: 0;
+}
+
+.btn-submit.loading .btn-loader {
+  display: block;
+}
+
+.btn-loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Разделитель */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--shadow-dark),
+    transparent
+  );
+}
+
+.divider span {
+  padding: 0 15px;
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+/* Социальные кнопки */
+.social-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: var(--bg-main);
+  box-shadow: 
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  font-size: 20px;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    8px 8px 16px var(--shadow-dark),
+    -8px -8px 16px var(--shadow-light);
+}
+
+.social-btn:active {
+  transform: translateY(0);
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+}
+
+.social-btn.google i {
+  color: #ea4335;
+}
+
+.social-btn.facebook i {
+  color: #1877f2;
+}
+
+.social-btn.github i {
+  color: #333;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .social-btn {
+    width: 45px;
+    height: 45px;
+  }
+}

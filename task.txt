@@ -1,0 +1,1093 @@
+Интерфейс регистрации и авторизации - "Неоморфизм стиль"
+Концепция дизайна
+Цветовая палитра: Мягкий неоморфизм
+
+Основной фон: #e0e5ec (светло-серый)
+Тени светлые: #ffffff
+Тени темные: #a3b1c6
+Акцент: #ff6b6b (коралловый)
+Акцент 2: #4ecdc4 (бирюзовый)
+Текст: #2d3436 (темно-серый)
+
+Структура файлов
+auth-neomorph/
+├── index.html
+├── styles.css
+└── script.js
+HTML - Полная структура
+html<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация - Neomorph</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Переключатель вкладок -->
+    <div class="tabs">
+      <button class="tab active" data-tab="login">Вход</button>
+      <button class="tab" data-tab="register">Регистрация</button>
+      <div class="tab-indicator"></div>
+    </div>
+    
+    <!-- Форма входа -->
+    <div class="form-container active" id="login-form">
+      <h2>Добро пожаловать!</h2>
+      <p class="subtitle">Войдите в свой аккаунт</p>
+      
+      <form>
+        <!-- Email -->
+        <div class="input-group">
+          <div class="input-wrapper">
+            <i class="icon-mail"></i>
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+          <span class="error-message"></span>
+        </div>
+        
+        <!-- Пароль -->
+        <div class="input-group">
+          <div class="input-wrapper">
+            <i class="icon-lock"></i>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="button" class="toggle-password">
+              <i class="icon-eye"></i>
+            </button>
+          </div>
+          <span class="error-message"></span>
+        </div>
+        
+        <!-- Чекбокс и забыли пароль -->
+        <div class="form-options">
+          <label class="checkbox-wrapper">
+            <input type="checkbox" name="remember">
+            <span class="checkmark"></span>
+            <span class="label-text">Запомнить меня</span>
+          </label>
+          
+          <a href="#" class="forgot-link">Забыли пароль?</a>
+        </div>
+        
+        <!-- Кнопка входа -->
+        <button type="submit" class="btn-submit">
+          <span class="btn-text">Войти</span>
+          <span class="btn-loader"></span>
+        </button>
+        
+        <!-- Разделитель -->
+        <div class="divider">
+          <span>или войдите через</span>
+        </div>
+        
+        <!-- Соцсети -->
+        <div class="social-buttons">
+          <button type="button" class="social-btn google">
+            <i class="icon-google"></i>
+          </button>
+          <button type="button" class="social-btn facebook">
+            <i class="icon-facebook"></i>
+          </button>
+          <button type="button" class="social-btn github">
+            <i class="icon-github"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Форма регистрации -->
+    <div class="form-container" id="register-form">
+      <h2>Создайте аккаунт</h2>
+      <p class="subtitle">Заполните данные для регистрации</p>
+      
+      <form>
+        <!-- Имя -->
+        <div class="input-group">
+          <div class="input-wrapper">
+            <i class="icon-user"></i>
+            <input type="text" name="name" placeholder="Полное имя" required>
+          </div>
+          <span class="error-message"></span>
+        </div>
+        
+        <!-- Email -->
+        <div class="input-group">
+          <div class="input-wrapper">
+            <i class="icon-mail"></i>
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+          <span class="error-message"></span>
+        </div>
+        
+        <!-- Пароль -->
+        <div class="input-group">
+          <div class="input-wrapper">
+            <i class="icon-lock"></i>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="button" class="toggle-password">
+              <i class="icon-eye"></i>
+            </button>
+          </div>
+          <!-- Индикатор силы пароля -->
+          <div class="password-strength">
+            <div class="strength-bar"></div>
+            <span class="strength-text"></span>
+          </div>
+          <span class="error-message"></span>
+        </div>
+        
+        <!-- Подтверждение пароля -->
+        <div class="input-group">
+          <div class="input-wrapper">
+            <i class="icon-lock"></i>
+            <input type="password" name="confirmPassword" placeholder="Подтвердите пароль" required>
+            <button type="button" class="toggle-password">
+              <i class="icon-eye"></i>
+            </button>
+          </div>
+          <span class="error-message"></span>
+        </div>
+        
+        <!-- Чекбоксы согласия -->
+        <div class="agreements">
+          <label class="checkbox-wrapper">
+            <input type="checkbox" name="terms" required>
+            <span class="checkmark"></span>
+            <span class="label-text">
+              Соглашаюсь с <a href="#">правилами платформы</a>
+            </span>
+          </label>
+          
+          <label class="checkbox-wrapper">
+            <input type="checkbox" name="privacy" required>
+            <span class="checkmark"></span>
+            <span class="label-text">
+              Согласен на <a href="#">обработку персональных данных</a>
+            </span>
+          </label>
+        </div>
+        
+        <!-- Кнопка регистрации -->
+        <button type="submit" class="btn-submit">
+          <span class="btn-text">Зарегистрироваться</span>
+          <span class="btn-loader"></span>
+        </button>
+        
+        <!-- Разделитель -->
+        <div class="divider">
+          <span>или зарегистрируйтесь через</span>
+        </div>
+        
+        <!-- Соцсети -->
+        <div class="social-buttons">
+          <button type="button" class="social-btn google">
+            <i class="icon-google"></i>
+          </button>
+          <button type="button" class="social-btn facebook">
+            <i class="icon-facebook"></i>
+          </button>
+          <button type="button" class="social-btn github">
+            <i class="icon-github"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
+CSS - Неоморфизм стили
+css:root {
+  --bg-main: #e0e5ec;
+  --shadow-light: #ffffff;
+  --shadow-dark: #a3b1c6;
+  --accent: #ff6b6b;
+  --accent-2: #4ecdc4;
+  --text: #2d3436;
+  --text-light: #636e72;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Главный контейнер */
+.container {
+  background: var(--bg-main);
+  border-radius: 30px;
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 
+    20px 20px 60px var(--shadow-dark),
+    -20px -20px 60px var(--shadow-light);
+}
+
+/* Переключатель вкладок */
+.tabs {
+  display: flex;
+  position: relative;
+  margin-bottom: 40px;
+  background: var(--bg-main);
+  border-radius: 50px;
+  padding: 6px;
+  box-shadow: 
+    inset 8px 8px 16px var(--shadow-dark),
+    inset -8px -8px 16px var(--shadow-light);
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.tab.active {
+  color: white;
+}
+
+.tab-indicator {
+  position: absolute;
+  width: calc(50% - 6px);
+  height: calc(100% - 12px);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 50px;
+  top: 6px;
+  left: 6px;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 
+    4px 4px 10px rgba(0,0,0,0.1);
+}
+
+.tab-indicator.move-right {
+  transform: translateX(calc(100% + 6px));
+}
+
+/* Контейнеры форм */
+.form-container {
+  display: none;
+  animation: fadeIn 0.5s;
+}
+
+.form-container.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  color: var(--text);
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-RetryClaude does not have the ability to run the code it generates yet.SContinueEditcss.subtitle {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* Группы инпутов */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-main);
+  border-radius: 15px;
+  padding: 14px 18px;
+  box-shadow: 
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light);
+  transition: all 0.3s;
+}
+
+.input-wrapper:focus-within {
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light),
+    0 0 0 2px var(--accent-2);
+}
+
+.input-wrapper i {
+  color: var(--text-light);
+  margin-right: 12px;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.input-wrapper:focus-within i {
+  color: var(--accent);
+}
+
+.input-wrapper input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-wrapper input::placeholder {
+  color: var(--text-light);
+}
+
+/* Кнопка показа пароля */
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-light);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.toggle-password:hover {
+  color: var(--accent);
+}
+
+/* Индикатор силы пароля */
+.password-strength {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-main);
+  border-radius: 2px;
+  box-shadow: 
+    inset 2px 2px 4px var(--shadow-dark),
+    inset -2px -2px 4px var(--shadow-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.strength-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.strength-bar.weak::after {
+  width: 33%;
+  background: #ff6b6b;
+}
+
+.strength-bar.medium::after {
+  width: 66%;
+  background: #feca57;
+}
+
+.strength-bar.strong::after {
+  width: 100%;
+  background: #48dbfb;
+}
+
+.strength-text {
+  font-size: 11px;
+  color: var(--text-light);
+  min-width: 60px;
+}
+
+/* Сообщения об ошибках */
+.error-message {
+  display: none;
+  color: var(--accent);
+  font-size: 12px;
+  margin-top: 6px;
+  padding-left: 4px;
+}
+
+.input-group.error .error-message {
+  display: block;
+  animation: shake 0.4s;
+}
+
+.input-group.error .input-wrapper {
+  box-shadow: 
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light),
+    0 0 0 2px var(--accent);
+}
+
+.input-group.success .input-wrapper {
+  box-shadow: 
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light),
+    0 0 0 2px #48dbfb;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* Опции формы (запомнить/забыли) */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* Кастомный чекбокс */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.checkbox-wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  background: var(--bg-main);
+  border-radius: 6px;
+  margin-right: 10px;
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.checkbox-wrapper input:checked ~ .checkmark {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 
+    4px 4px 8px rgba(0,0,0,0.1),
+    -2px -2px 6px rgba(255,255,255,0.5);
+}
+
+.checkbox-wrapper input:checked ~ .checkmark::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: checkmark 0.3s;
+}
+
+@keyframes checkmark {
+  0% { transform: translate(-50%, -50%) scale(0); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.label-text {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.label-text a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.label-text a:hover {
+  color: var(--accent-2);
+}
+
+/* Ссылка забыли пароль */
+.forgot-link {
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.forgot-link:hover {
+  color: var(--accent-2);
+  text-decoration: underline;
+}
+
+/* Соглашения (для регистрации) */
+.agreements {
+  margin-bottom: 25px;
+}
+
+.agreements .checkbox-wrapper {
+  margin-bottom: 12px;
+}
+
+.agreements .checkbox-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+/* Кнопка отправки */
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    8px 8px 16px var(--shadow-dark),
+    -8px -8px 16px var(--shadow-light);
+  transition: all 0.3s;
+  margin-bottom: 20px;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    10px 10px 20px var(--shadow-dark),
+    -10px -10px 20px var(--shadow-light);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+  box-shadow: 
+    inset 6px 6px 12px rgba(0,0,0,0.1),
+    inset -6px -6px 12px rgba(255,255,255,0.5);
+}
+
+.btn-submit.loading {
+  pointer-events: none;
+}
+
+.btn-submit.loading .btn-text {
+  opacity: 0;
+}
+
+.btn-submit.loading .btn-loader {
+  display: block;
+}
+
+.btn-loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Разделитель */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--shadow-dark),
+    transparent
+  );
+}
+
+.divider span {
+  padding: 0 15px;
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+/* Социальные кнопки */
+.social-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: var(--bg-main);
+  box-shadow: 
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  font-size: 20px;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    8px 8px 16px var(--shadow-dark),
+    -8px -8px 16px var(--shadow-light);
+}
+
+.social-btn:active {
+  transform: translateY(0);
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+}
+
+.social-btn.google i {
+  color: #ea4335;
+}
+
+.social-btn.facebook i {
+  color: #1877f2;
+}
+
+.social-btn.github i {
+  color: #333;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .social-btn {
+    width: 45px;
+    height: 45px;
+  }
+}
+JavaScript - Полная логика
+javascript// ==================== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ====================
+class TabSwitcher {
+  constructor() {
+    this.tabs = document.querySelectorAll('.tab');
+    this.indicator = document.querySelector('.tab-indicator');
+    this.loginForm = document.getElementById('login-form');
+    this.registerForm = document.getElementById('register-form');
+    
+    this.init();
+  }
+  
+  init() {
+    this.tabs.forEach(tab => {
+      tab.addEventListener('click', () => this.switchTab(tab));
+    });
+  }
+  
+  switchTab(clickedTab) {
+    // Убираем active со всех табов
+    this.tabs.forEach(tab => tab.classList.remove('active'));
+    
+    // Добавляем active к нажатому табу
+    clickedTab.classList.add('active');
+    
+    // Двигаем индикатор
+    const tabType = clickedTab.dataset.tab;
+    if (tabType === 'register') {
+      this.indicator.classList.add('move-right');
+      this.loginForm.classList.remove('active');
+      this.registerForm.classList.add('active');
+    } else {
+      this.indicator.classList.remove('move-right');
+      this.registerForm.classList.remove('active');
+      this.loginForm.classList.add('active');
+    }
+  }
+}
+
+// ==================== ВАЛИДАЦИЯ ФОРМЫ ====================
+class FormValidator {
+  constructor(form) {
+    this.form = form;
+    this.rules = {
+      name: {
+        required: true,
+        minLength: 2,
+        pattern: /^[а-яА-ЯёЁa-zA-Z\s]+$/,
+        messages: {
+          required: 'Введите ваше имя',
+          minLength: 'Минимум 2 символа',
+          pattern: 'Только буквы и пробелы'
+        }
+      },
+      email: {
+        required: true,
+        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        messages: {
+          required: 'Введите email',
+          pattern: 'Некорректный email адрес'
+        }
+      },
+      password: {
+        required: true,
+        minLength: 6,
+        messages: {
+          required: 'Введите пароль',
+          minLength: 'Минимум 6 символов'
+        }
+      },
+      confirmPassword: {
+        required: true,
+        match: 'password',
+        messages: {
+          required: 'Подтвердите пароль',
+          match: 'Пароли не совпадают'
+        }
+      }
+    };
+    
+    this.init();
+  }
+  
+  init() {
+    // Валидация при потере фокуса
+    this.form.querySelectorAll('input').forEach(input => {
+      input.addEventListener('blur', () => {
+        if (input.value) {
+          this.validateField(input);
+        }
+      });
+      
+      // Убираем ошибку при вводе
+      input.addEventListener('input', () => {
+        this.clearError(input);
+      });
+    });
+    
+    // Обработка отправки формы
+    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+  }
+  
+  validateField(input) {
+    const fieldName = input.name;
+    const value = input.value.trim();
+    const rules = this.rules[fieldName];
+    
+    if (!rules) return true;
+    
+    // Проверка required
+    if (rules.required && !value) {
+      this.showError(input, rules.messages.required);
+      return false;
+    }
+    
+    // Проверка minLength
+    if (rules.minLength && value.length < rules.minLength) {
+      this.showError(input, rules.messages.minLength);
+      return false;
+    }
+    
+    // Проверка pattern
+    if (rules.pattern && !rules.pattern.test(value)) {
+      this.showError(input, rules.messages.pattern);
+      return false;
+    }
+    
+    // Проверка совпадения паролей
+    if (rules.match) {
+      const matchInput = this.form.querySelector(`[name="${rules.match}"]`);
+      if (value !== matchInput.value) {
+        this.showError(input, rules.messages.match);
+        return false;
+      }
+    }
+    
+    this.showSuccess(input);
+    return true;
+  }
+  
+  showError(input, message) {
+    const inputGroup = input.closest('.input-group');
+    const errorMessage = inputGroup.querySelector('.error-message');
+    
+    inputGroup.classList.remove('success');
+    inputGroup.classList.add('error');
+    errorMessage.textContent = message;
+    
+    // Вибрация на мобильных (если поддерживается)
+    if (navigator.vibrate) {
+      navigator.vibrate(200);
+    }
+  }
+  
+  showSuccess(input) {
+    const inputGroup = input.closest('.input-group');
+    inputGroup.classList.remove('error');
+    inputGroup.classList.add('success');
+  }
+  
+  clearError(input) {
+    const inputGroup = input.closest('.input-group');
+    inputGroup.classList.remove('error');
+  }
+  
+  validateAll() {
+    let isValid = true;
+    
+    this.form.querySelectorAll('input[required]').forEach(input => {
+      if (!this.validateField(input)) {
+        isValid = false;
+      }
+    });
+    
+    // Проверка чекбоксов (для регистрации)
+    const requiredCheckboxes = this.form.querySelectorAll('input[type="checkbox"][required]');
+    requiredCheckboxes.forEach(checkbox => {
+      if (!checkbox.checked) {
+        isValid = false;
+        const label = checkbox.closest('.checkbox-wrapper');
+        label.style.animation = 'shake 0.4s';
+        setTimeout(() => label.style.animation = '', 400);
+      }
+    });
+    
+    return isValid;
+  }
+  
+  handleSubmit(e) {
+    e.preventDefault();
+    
+    if (!this.validateAll()) {
+      return;
+    }
+    
+    this.submitForm();
+  }
+  
+  submitForm() {
+    const button = this.form.querySelector('.btn-submit');
+    button.classList.add('loading');
+    
+    // Имитация отправки на сервер
+    setTimeout(() => {
+      button.classList.remove('loading');
+      this.showSuccessModal();
+      this.form.reset();
+      
+      // Убираем все статусы валидации
+      this.form.querySelectorAll('.input-group').forEach(group => {
+        group.classList.remove('success', 'error');
+      });
+    }, 2000);
+  }
+  
+  showSuccessModal() {
+    // Создаем модалку успеха
+    const modal = document.createElement('div');
+    modal.className = 'success-modal';
+    modal.innerHTML = `
+      <div class="success-content">
+        <div class="success-icon">✓</div>
+        <h3>Успешно!</h3>
+        <p>Данные успешно отправлены</p>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Стили для модалки
+    modal.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s;
+    `;
+    
+    const content = modal.querySelector('.success-content');
+    content.style.cssText = `
+      background: var(--bg-main);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 
+        20px 20px 60px var(--shadow-dark),
+        -20px -20px 60px var(--shadow-light);
+      animation: slideUp 0.5s;
+    `;
+    
+    // Удаляем модалку через 2 секунды
+    setTimeout(() => {
+      modal.style.animation = 'fadeOut 0.3s';
+      setTimeout(() => modal.remove(), 300);
+    }, 2000);
+  }
+}
+
+// ==================== ПОКАЗ/СКРЫТИЕ ПАРОЛЯ ====================
+class PasswordToggle {
+  constructor() {
+    this.toggleButtons = document.querySelectorAll('.toggle-password');
+    this.init();
+  }
+  
+  init() {
+    this.toggleButtons.forEach(button => {
+      button.addEventListener('click', () => this.toggle(button));
+    });
+  }
+  
+  toggle(button) {
+    const input = button.previousElementSibling;
+    const icon = button.querySelector('i');
+    
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.classList.remove('icon-eye');
+      icon.classList.add('icon-eye-off');
+    } else {
+      input.type = 'password';
+      icon.classList.remove('icon-eye-off');
+      icon.classList.add('icon-eye');
+    }
+  }
+}
+
+// ==================== ИНДИКАТОР СИЛЫ ПАРОЛЯ ====================
+class PasswordStrength {
+  constructor() {
+    this.passwordInputs = document.querySelectorAll('input[name="password"]');
+    this.init();
+  }
+  
+  init() {
+    this.passwordInputs.forEach(input => {
+      // Только для формы регистрации
+      if (input.closest('#register-form')) {
+        input.addEventListener('input', () => this.checkStrength(input));
+      }
+    });
+  }
+  
+  checkStrength(input) {
+    const value = input.value;
+    const strengthBar = input.closest('.input-group').querySelector('.strength-bar');
+    const strengthText = input.closest('.input-group').querySelector('.strength-text');
+    
+    if (!strengthBar) return;
+    
+    let strength = 0;
+    
+    // Проверки
+    if (value.length >= 6) strength++;
+    if (value.length >= 10) strength++;
+    if (/[a-z]/.test(value) && /[A-Z]/.test(value)) strength++;
+    if (/\d/.test(value)) strength++;
+    if (/[^a-zA-Z\d]/.test(value)) strength++;
+    
+    // Устанавливаем класс
+    strengthBar.className = 'strength-bar';
+    
+    if (strength <= 2) {
+      strengthBar.classList.add('weak');
+      strengthText.textContent = 'Слабый';
+      strengthText.style.color = '#ff6b6b';
+    } else if (strength <= 4) {
+      strengthBar.classList.add('medium');
+      strengthText.textContent = 'Средний';
+      strengthText.style.color = '#feca57';
+    } else {
+      strengthBar.classList.add('strong');
+      strengthText.textContent = 'Сильный';
+      strengthText.style.color = '#48dbfb';
+    }
+  }
+}
+
+// ==================== ИНИЦИАЛИЗАЦИЯ ====================
+document.addEventListener('DOMContentLoaded', () => {
+  new TabSwitcher();
+  
+  // Валидаторы для каждой формы
+  const loginForm = document.querySelector('#login-form form');
+  const registerForm = document.querySelector('#register-form form');
+  
+  new FormValidator(loginForm);
+  new FormValidator(registerForm);
+  
+  new PasswordToggle();
+  new PasswordStrength();
+});
