@@ -7,6 +7,7 @@ class TabSwitcher {
     this.registerForm = document.getElementById('register-form');
     
     this.init();
+    this.restoreTabState(); // Restore tab state on load
   }
   
   init() {
@@ -32,6 +33,23 @@ class TabSwitcher {
       this.indicator.classList.remove('move-right');
       this.registerForm.classList.remove('active');
       this.loginForm.classList.add('active');
+    }
+    localStorage.setItem('activeTab', tabType); // Save active tab
+  }
+
+  restoreTabState() {
+    const activeTab = localStorage.getItem('activeTab');
+    if (activeTab) {
+      const tabToActivate = document.querySelector(`.tab[data-tab="${activeTab}"]`);
+      if (tabToActivate) {
+        this.switchTab(tabToActivate);
+      } else {
+        // Fallback to login if stored tab is invalid
+        this.switchTab(document.querySelector('.tab[data-tab="login"]'));
+      }
+    } else {
+      // Default to login tab if no state is stored
+      this.switchTab(document.querySelector('.tab[data-tab="login"]'));
     }
   }
 }
