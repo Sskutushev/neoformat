@@ -511,23 +511,67 @@ h2 {
 }
 
 /* Адаптивность */
-@media (max-width: 480px) {
+
+/* Планшеты */
+@media (max-width: 768px) {
   .container {
-    padding: 30px 20px;
+    padding: 35px;
+    box-shadow: 
+      15px 15px 40px var(--shadow-dark),
+      -15px -15px 40px var(--shadow-light);
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+}
+
+/* Мобильные устройства */
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    align-items: flex-start; /* Прижимаем к верху на мобильных */
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    padding: 40px 25px;
+    box-shadow: none;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   h2 {
     font-size: 24px;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
   }
   
   .form-options {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 15px; /* Увеличим отступ */
+  }
+
+  .forgot-link {
+    align-self: flex-start; /* Выравниваем по левому краю */
   }
   
   .social-btn {
-    width: 45px;
-    height: 45px;
+    width: 50px; /* Вернем размер для удобства нажатия */
+    height: 50px;
+  }
+
+  .tabs {
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 20px);
   }
 }
