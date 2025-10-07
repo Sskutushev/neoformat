@@ -498,16 +498,10 @@ h2 {
     inset -4px -4px 8px var(--shadow-light);
 }
 
-.social-btn.google i {
-  color: #ea4335;
-}
-
-.social-btn.facebook i {
-  color: #1877f2;
-}
-
-.social-btn.github i {
-  color: #333;
+.social-btn img {
+  width: 24px; /* Smaller size for the image */
+  height: 24px; /* Smaller size for the image */
+  object-fit: contain; /* Ensures the image fits within the bounds */
 }
 
 /* Адаптивность */
